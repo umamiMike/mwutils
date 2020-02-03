@@ -18,7 +18,45 @@ func PrintWait(s string, t ...float64) {
 
 }
 
-func newUUID() (string, error) {
+func ConvertDigitsToIntSlice(input int) []int {
+
+	n_str := strconv.Itoa(input)                   // convert to a string
+	string_slice := strings.Split(n_str, "")       // split it up into a string slice
+	int_sl := convStrSliceToIntSlice(string_slice) //convert that slice to an int slice
+	return int_sl
+}
+
+func ConvertStrSliceToIntSlice(s []string) []int {
+	var intSlice []int
+	for k := range s {
+		cv, _ := si(s[k])
+		intSlice = append(intSlice, cv)
+	}
+	return intSlice
+}
+
+func ProductDigits(input int) int {
+	int_sl := convertDigitsToIntSlice(input)
+
+	prod := 1
+	for i := range int_sl {
+		prod = prod * int_sl[i]
+	}
+	return prod
+}
+
+func SumDigits(input int) int {
+
+	int_sl := convertDigitsToIntSlice(input)
+
+	sum := 0
+	for i := range int_sl {
+		sum += int_sl[i]
+	}
+	return sum
+}
+
+func NewUUID() (string, error) {
 	uuid := make([]byte, 16)
 	n, err := io.ReadFull(rand.Reader, uuid)
 	if n != len(uuid) || err != nil {
