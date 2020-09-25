@@ -1,4 +1,4 @@
-package mwutils
+package utils
 
 import (
 	"crypto/rand"
